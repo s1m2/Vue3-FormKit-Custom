@@ -1,27 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-// import { getNode } from '@formkit/core'
+import { ref , computed} from 'vue';
 import { FormKitSchema, submitForm } from '@formkit/vue';
+import type { FormKitFrameworkContext } from '@formkit/core';
 
-const form = ref()
-
-const data = ref({
-  reason: "fiodkgbjl;kfjmbg;fd"
-});
-
-// onMounted(() => {
-//   /** Another way of setting a value */
-//   const node = getNode('question');
-//   node?.input('The government is being a pain the wrong place', false);
-// })
+const data = ref({});
+const form = ref<FormKitFrameworkContext>()
+const isValid = computed(() => form.value?.node.context?.state.valid)
 
 const schema = [
   {
     $formkit: 'inputText',
     name: 'reason',
-    label: 'Bens label',
     id: 'question',
-    title: 'What is the reason for getting a new car ?',
+    label: 'What is the reason for getting a new car ?',
     validation: 'required',
     validationVisibility: 'dirty',
     validationMessages: {
@@ -46,7 +37,7 @@ const schema = [
   },
   {
     $formkit: 'inputSelect',
-    if: [{ object: 'make' }],
+    if: '$get(make).value',
     name: 'model',
     id: 'model',
     title: 'Select your preferred model ?',
@@ -62,7 +53,6 @@ const schema = [
   },
   {
     $formkit: 'inputCheckBox',
-    if: [{ object: 'model', equals: 'A6' }],
     if: '$get(model).value === A6',
     name: 'engine',
     id: 'engine',
@@ -72,9 +62,15 @@ const schema = [
   },
 ]
 
-function validateForm() {
+function submitPageData(data: any) {
+  // // retrieve the core node (several ways to do this):
   // const node = form.value.node
-  // console.log(node)
+  // // submit the form!
+  // node.submit()
+  console.log(data)
+}
+
+function submitHandler () {
   submitForm('car-stuff')
 }
 
@@ -86,11 +82,11 @@ function validateForm() {
   </header>
 
   <main>
-    <FormKit ref="form" id="car-stuff" type="form" v-model="data" :actions="false">
+    <FormKit ref="form" id="car-stuff" type="form" v-model="data" :actions="false" @submit="submitPageData">
       <FormKitSchema :schema="schema" />
     </FormKit>
 
-    <button @click="validateForm">Validate Form</button>
+    <button :disabled="!isValid" @click="submitHandler">Validate Form</button>
     <pre wrap>{{ data }}</pre>
   </main>
 </template>

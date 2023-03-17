@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps<{
-  title?: string
+  label?: string
   id?: string
   modelValue: any
 }>()
@@ -15,7 +15,7 @@ function handleInput(event: Event) {
 
 <template>
   <div>
-    <label :for="id">{{ title }}</label>
+    <label :for="id">{{ label }}</label>
     <input type="text" :id="id" :name="id" :value="modelValue" @change="handleInput">
   </div>
 </template>
