@@ -6,10 +6,10 @@ const BaseInput = defineAsyncComponent(() => import('./BaseInput.vue'));
 const BaseRadio = defineAsyncComponent(() => import('./BaseRadio.vue'));
 const BaseCheckBox = defineAsyncComponent(() => import('./BaseCheckBox.vue'));
 const BaseSelect = defineAsyncComponent(() => import('./BaseSelect.vue'));
-const Alert = defineAsyncComponent(() => import('./AppNotification.vue'));
+const Modal = defineAsyncComponent(() => import('./AppModal.vue'))
 
 const components = {
-  alert: Alert,
+  modal: Modal,
   input: BaseInput,
   inputRadio: BaseRadio,
   inputCheckBox: BaseCheckBox,
@@ -32,6 +32,7 @@ const inputValue = computed({
   },
   set (value) {
     props?.context?.node.input(value)
+    props?.context?.handlers.blur
   }
 })
 </script>

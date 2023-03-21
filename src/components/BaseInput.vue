@@ -25,7 +25,7 @@ function handleInput(event: Event) {
 <template>
   <div class="form-input">
     <label :for="id">{{ label }}</label>
-    <input :type="type" :id="id" :name="id" :value="modelValue" @change="handleInput">
+    <input :type="type" :id="id" :name="id" :value="modelValue" @change="handleInput" @blur="handleInput">
   </div>
 </template>
 

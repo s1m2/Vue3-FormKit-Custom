@@ -1,26 +1,33 @@
 <script setup lang="ts">
+
 </script>
 
 <template>
-  <div class="notification-wrapper">
-    <div class="notification">
+  <div class="wrapper">
+    <div class="modal">
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste eos corporis id maiores unde! Ducimus excepturi
         voluptatum facilis, nemo ipsa, mollitia quibusdam est fugit perferendis sed voluptatibus soluta rem quas?
       </p>
+      <button>Close</button>
     </div>
   </div>
 </template>
 
 <style scoped>
-.notification-wrapper {
+.wrapper {
+  background-color: hsla(0, 0%, 1%, 0.4);
   position: absolute;
-  top: 3em;
-  width: 50vw;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
-.notification {
-  border: 1px solid crimson;
-  border-radius: 0.2em;
+
+.modal {
+  background-color: white;
+  width: 30vw;
   padding: 1rem;
-  background-color: hsl(0, 100%, 90%);
+  margin: 0 auto;
+  border-radius: 0.1em;
 }
 </style>

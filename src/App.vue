@@ -41,13 +41,14 @@ function submitHandler() {
         <FormKitSchema :schema="schema" />
       </FormKit>
 
-
       <button @click="submitHandler(index)">Validate Form</button>
     </template> -->
 
     <FormKit ref="form" id="car-stuff" type="form" v-model="data" :actions="false" @submit="submitPageData">
       <FormKitSchema :schema="schema" />
     </FormKit>
+
+    <!-- <FormKitSchema ref="form" :schema="schema" /> -->
 
     <button @click="submitHandler">Validate Form</button>
     <pre wrap>{{ data }}</pre>
