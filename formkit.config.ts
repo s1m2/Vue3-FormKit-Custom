@@ -6,6 +6,7 @@ const customComponent = createInput(ComponentWrapper)
 
 export const config = defaultConfig({
   inputs: {
+    heading: customComponent,
     modal: customComponent,
     input: customComponent,
     inputSelect: customComponent,

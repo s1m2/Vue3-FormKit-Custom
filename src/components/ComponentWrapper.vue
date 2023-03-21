@@ -6,9 +6,11 @@ const BaseInput = defineAsyncComponent(() => import('./BaseInput.vue'));
 const BaseRadio = defineAsyncComponent(() => import('./BaseRadio.vue'));
 const BaseCheckBox = defineAsyncComponent(() => import('./BaseCheckBox.vue'));
 const BaseSelect = defineAsyncComponent(() => import('./BaseSelect.vue'));
+const Heading = defineAsyncComponent(() => import('./AppHeading.vue'))
 const Modal = defineAsyncComponent(() => import('./AppModal.vue'))
 
 const components = {
+  heading: Heading,
   modal: Modal,
   input: BaseInput,
   inputRadio: BaseRadio,

@@ -14,7 +14,7 @@ defineEmits<{ (e: "update:modelValue", value: string): void }>();
 //     props: {
 //       name: 'password_confirm',
 //       label?: 'Confirm password',
-//       help?: 'Enter your new password again to confirm it.',
+//       hint?: 'Enter your new password again to confirm it.',
 //     },
 //     /* in discussion */
 //     validation?: 'required|confirm',
