@@ -1,14 +1,14 @@
 export const schema = [
   {
-    type: 'CFormFieldInput',
+    elements: 'text',
+    components: "",
     name: "anyting",
-    id: "anything",
-    label: "Third Party Interest",
-    validation: "required",
-    required: true
+    inputOptions: {
+      label: "Third Party Interest"
+    }
   },
   {
-    type: 'CFormFieldSelect',
+    type: 'select',
     depends_on: [{ id: 'anyting', operator: "equals", value: true}],
     name: "2313ERNexempt",
     id: "2313ERNexempt",
@@ -55,7 +55,7 @@ export const schema_2 = [
   },
   {
     type: 'CFormFieldSelect',
-    if: [{ object: 'anything', equals: true}],
+    if: [{ object: 'anything', equals: true, greatherthan: 30}],
     name: "2313ERNexempt",
     id: "2313ERNexempt",
     label: "Is the Client ERN exempt?",
@@ -101,7 +101,7 @@ export const schema_4 = [
   },
   {
     type: 'CFormFieldSelect',
-    condition: 'anything=true',
+    condition: 'anything>true',
     name: "2313ERNexempt",
     id: "2313ERNexempt",
     label: "Is the Client ERN exempt?",

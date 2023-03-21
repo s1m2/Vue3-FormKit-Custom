@@ -4,3 +4,25 @@
   padding: 2rem;
   font-weight: normal;
 }
+
+.formkit-messages {
+  padding: 0;
+  margin-top: 0.2rem;
+  font-size: 0.9rem;
+}
+
+.formkit-message {
+  list-style-type: none;
+  color: crimson;
+}
+
+.form-input {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-gap: 0.25em;
+  margin-bottom: 1.5em;
+}
+
+.form-input:has(input, select) {
+  min-height: 4em;
+}

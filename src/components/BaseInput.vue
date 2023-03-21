@@ -1,12 +1,21 @@
 <script setup lang="ts">
-defineProps<{
+
+export interface Props {
+  type: string
+  modelValue: any
   label?: string
   id?: string
-  modelValue: any
-}>()
+}
+
+withDefaults(defineProps<Props>(), {
+  type: 'text',
+  modelValue: '',
+  label: '',
+  id: ''
+})
 
 const emit = defineEmits<{ (e: "update:modelValue", value: string): void }>();
- 
+
 function handleInput(event: Event) {
   emit('update:modelValue', (event.target as HTMLInputElement).value)
 }
@@ -14,9 +23,9 @@ function handleInput(event: Event) {
 </script>
 
 <template>
-  <div>
+  <div class="form-input">
     <label :for="id">{{ label }}</label>
-    <input type="text" :id="id" :name="id" :value="modelValue" @change="handleInput">
+    <input :type="type" :id="id" :name="id" :value="modelValue" @change="handleInput">
   </div>
 </template>
 

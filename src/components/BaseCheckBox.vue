@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineProps<{
   modelValue: boolean,
-  title: string
+  label: string
   id: string
   options: Array<{ id: string, name: string }>
 }>()
@@ -11,7 +11,7 @@ defineEmits<{ (e: "update:modelValue", value: boolean): void }>();
 
 <template>
   <fieldset>
-    <legend>{{ title }}</legend>
+    <legend>{{ label }}</legend>
     <div v-for="(option, index) in options" :key="index">
       <input type="checkbox" :id="option.id" :name="option.name" :checked="modelValue"
         @change="(event) => $emit('update:modelValue', ((event.target) as HTMLInputElement).checked)">

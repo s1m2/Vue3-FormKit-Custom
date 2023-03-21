@@ -6,9 +6,11 @@ const BaseInput = defineAsyncComponent(() => import('./BaseInput.vue'));
 const BaseRadio = defineAsyncComponent(() => import('./BaseRadio.vue'));
 const BaseCheckBox = defineAsyncComponent(() => import('./BaseCheckBox.vue'));
 const BaseSelect = defineAsyncComponent(() => import('./BaseSelect.vue'));
+const Alert = defineAsyncComponent(() => import('./AppNotification.vue'));
 
 const components = {
-  inputText: BaseInput,
+  alert: Alert,
+  input: BaseInput,
   inputRadio: BaseRadio,
   inputCheckBox: BaseCheckBox,
   inputSelect: BaseSelect
@@ -21,7 +23,7 @@ const props = defineProps<{
 }>()
 
 const attributes = computed(() => {
-  return { id: props.context.id, ...props.context.attrs}
+  return { id: props.context.id, ...props.context.attrs.props}
 })
 
 const inputValue = computed({

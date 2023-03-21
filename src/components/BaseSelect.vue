@@ -1,8 +1,9 @@
 <script setup lang="ts">
 defineProps<{
-  title: string
+  label: string
   id: string
   modelValue: string,
+  help?: string,
   options: Array<{ value: string, name: string }>
 }>()
 
@@ -10,10 +11,12 @@ defineEmits<{ (e: "update:modelValue", value: string): void }>();
 </script>
 
 <template>
-  <div>
-    <label :for="id">{{ title }}</label>
+  <div class="form-input">
+    <label :for="id">{{ label }}</label>
     <select :value="modelValue" :name="id" :id="id" @change="(event) => $emit('update:modelValue', ((event.target) as HTMLInputElement).value)">
+      <option value="- select -">- select -</option>
       <option v-for="(option, index) in options" :key="index" :value="option.value">{{ option.name }}</option>
     </select>
+    <small>{{ help }}</small>
   </div>
 </template>
