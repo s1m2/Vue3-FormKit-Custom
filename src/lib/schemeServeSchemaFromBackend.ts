@@ -1,12 +1,10 @@
 import type { QuoteBuilderFormSchema } from './types';
 
-import { isModifierLike } from "typescript";
-
 // export const futureStuff: QuoteBuilderSchema[] = [
 //   type: 'form',
 //   id: 'NBSSchemeScherveForm',
-//   fields: QuoteBuilderFormSchema[],
 //   props: {
+//     fields: QuoteBuilderFormSchema[],
 //     validationVisibility: 'live',
 //   },
 //   triggers: {
@@ -55,9 +53,6 @@ export const schemaFromBackend: QuoteBuilderFormSchema[] = [
         { value: "hotel", label: "Hotel" },
         { value: "wedding", label: "Wedding Event Venue" }
       ],
-      // triggers: {
-      //   onChange: "fetchPrice"
-      // }
     }
   },
   {
@@ -112,18 +107,21 @@ export const schemaFromBackend: QuoteBuilderFormSchema[] = [
     component: 'modal',
     id: 'modal',
     props: [],
-    show_if: [ // this component shows if below conditions match
-      {
-        field: 'ernStatus',
-        operator: 'equals',
-        value: 'yes'
-      },
-      {
-        field: 'inceptionDate', // Only businesses started in 2023 need ERN
-        operator: 'greater_than_or_equals_to',
-        value: '2023-01-01'
-      },
-    ]
+    show_if: {
+      operator: 'and',
+      rules: [ // this component shows if below conditions match
+        {
+          field: 'ernStatus',
+          operator: 'equals',
+          value: 'yes'
+        },
+        {
+          field: 'inceptionDate', // Only businesses started in 2023 need ERN
+          operator: 'greater_than_or_equals_to',
+          value: '2023-01-01'
+        },
+      ]
+    }
   },
   {
     component: 'inputSelect',
@@ -131,13 +129,16 @@ export const schemaFromBackend: QuoteBuilderFormSchema[] = [
     validation: [
       { rule: 'required' }
     ],
-    show_if: [
-      {
-        field: 'ernStatus',
-        operator: 'equals',
-        value: 'yes'
-      },
-    ],
+    show_if: {
+      operator: 'and',
+      rules: [
+        {
+          field: 'ernStatus',
+          operator: 'equals',
+          value: 'yes'
+        },
+      ],
+    },
     props: {
       label: 'Reason for being ERN Exempt:',
       options: [
@@ -153,13 +154,16 @@ export const schemaFromBackend: QuoteBuilderFormSchema[] = [
     validation: [
       { rule: 'required' }
     ],
-    show_if: [
-      {
-        field: 'ernStatus',
-        operator: 'equals',
-        value: 'yes'
-      },
-    ],
+    show_if: {
+      operator: 'and',
+      rules: [
+        {
+          field: 'ernStatus',
+          operator: 'equals',
+          value: 'yes'
+        },
+      ],
+    },
     props: {
       label: 'Employers Reference Number',
     }
@@ -184,13 +188,16 @@ export const schemaFromBackend: QuoteBuilderFormSchema[] = [
     validation: [
       { rule: 'required' }
     ],
-    show_if: [
-      {
-        field: 'notifyThirdParty',
-        operator: 'equals',
-        value: 'yes'
-      },
-    ],
+    show_if: {
+      operator: 'and',
+      rules: [
+        {
+          field: 'notifyThirdParty',
+          operator: 'equals',
+          value: 'yes'
+        },
+      ],
+    },
     props: {
       label: 'Third Party Interest',
     }

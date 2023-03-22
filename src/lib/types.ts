@@ -3,7 +3,10 @@ export type QuoteBuilderFormSchema = {
   id: string;
   props?: BaseHeadingProps | BaseInputTextProps | BaseInputSelectProps | []; // Etc...
   validation?: ValidationRule[];
-  show_if?: ShowIfRule[];
+  show_if?: {
+    operator: 'and'|'or',
+    rules: ShowIfRule[];
+  }
   children?: QuoteBuilderFormSchema[];
 }
 
