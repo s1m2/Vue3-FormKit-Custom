@@ -1,4 +1,4 @@
-// import type { QuoteBuilderFormSchema } from '@quotebuilder/forms';
+import type { QuoteBuilderFormSchema } from './types';
 
 import { isModifierLike } from "typescript";
 
@@ -32,18 +32,21 @@ export const schemaFromBackend: QuoteBuilderFormSchema[] = [
     }
   },
   {
-    component: 'date',
+    component: 'inputDate',
     id: 'inceptionDate',
-    validation: ['required'],
+    validation: [
+      { rule: 'required' }
+    ],
     props: {
       label: 'Inception Date',
-      type: 'date',
     }
   },
   {
-    component: 'select',
+    component: 'inputSelect',
     id: 'riskType',
-    validation: ['required'],
+    validation: [
+      { rule: 'required' }
+    ],
     props: {
       label: 'Please advise the type of risk ?',
       options: [
@@ -58,10 +61,8 @@ export const schemaFromBackend: QuoteBuilderFormSchema[] = [
     }
   },
   {
-    component: 'input',
+    component: 'inputText',
     id: 'tradingName',
-    // TODO: Decide with Ben.
-    // This
     validation: [ // Required but can be empty array
       {
         rule: 'required',
@@ -72,21 +73,16 @@ export const schemaFromBackend: QuoteBuilderFormSchema[] = [
         message: 'Minimum 5 characters please', //optional
       },
     ],
-    // Or this?
-    validationTwo: ['required', 'min:5'],
-    validationMessages: {
-      required: 'Please enter a trading name :)',
-      min: 'Minimum 5 characters please',
-    },
     props: {
       label: 'Proposers name and trading name in full',
-      type: 'text'
     }
   },
   {
     component: 'inputSelect',
     id: 'businessStatus',
-    validation: ['required'],
+    validation: [
+      { rule: 'required' }
+    ],
     props: {
       label: 'What is the Business Status ?',
       options: [
@@ -99,7 +95,9 @@ export const schemaFromBackend: QuoteBuilderFormSchema[] = [
   {
     component: 'inputSelect',
     id: 'ernStatus',
-    validation: ['required'],
+    validation: [
+      { rule: 'required' }
+    ],
     props: {
       label: 'Is the Client ERN exempt ?',
       options: [
@@ -113,6 +111,7 @@ export const schemaFromBackend: QuoteBuilderFormSchema[] = [
   {
     component: 'modal',
     id: 'modal',
+    props: [],
     show_if: [ // this component shows if below conditions match
       {
         field: 'ernStatus',
@@ -129,7 +128,9 @@ export const schemaFromBackend: QuoteBuilderFormSchema[] = [
   {
     component: 'inputSelect',
     id: 'ernExemptReason',
-    validation: ['required'],
+    validation: [
+      { rule: 'required' }
+    ],
     show_if: [
       {
         field: 'ernStatus',
@@ -149,7 +150,9 @@ export const schemaFromBackend: QuoteBuilderFormSchema[] = [
   {
     component: 'input',
     id: 'ern',
-    validation: ['required'],
+    validation: [
+      { rule: 'required' }
+    ],
     show_if: [
       {
         field: 'ernStatus',
@@ -159,13 +162,14 @@ export const schemaFromBackend: QuoteBuilderFormSchema[] = [
     ],
     props: {
       label: 'Employers Reference Number',
-      type: 'text'
     }
   },
   {
     component: 'inputRadio',
     id: 'notifyThirdParty',
-    validation: ['required'],
+    validation: [
+      { rule: 'required' }
+    ],
     props: {
       label: 'Is there a Third Party Interest to be Noted?',
       options: [
@@ -177,7 +181,9 @@ export const schemaFromBackend: QuoteBuilderFormSchema[] = [
   {
     component: 'input',
     id: 'thirdPartyName',
-    validation: 'required',
+    validation: [
+      { rule: 'required' }
+    ],
     show_if: [
       {
         field: 'notifyThirdParty',
@@ -187,13 +193,14 @@ export const schemaFromBackend: QuoteBuilderFormSchema[] = [
     ],
     props: {
       label: 'Third Party Interest',
-      type: 'text'
     }
   },
   {
     component: 'inputSelect',
     id: 'yearsCurrent',
-    validation: ['required'],
+    validation: [
+      { rule: 'required' }
+    ],
     props: {
       label: 'Number of years trading at this address ?',
       options: [
@@ -210,17 +217,19 @@ export const schemaFromBackend: QuoteBuilderFormSchema[] = [
   {
     component: 'inputSelect',
     id: 'yearsPrevious',
-    validation: ['required'],
+    validation: [
+      { rule: 'required' }
+    ],
     props: {
       label: 'Number of years trading at a previous address ?',
       options: [
-        { value: "0", labels: "0" },
-        { value: "1", labels: "1" },
-        { value: "2", labels: "2" },
-        { value: "3", labels: "3" },
-        { value: "4", labels: "4" },
-        { value: "5", labels: "5" },
-        { value: "5+", labels: "5+" }
+        { value: "0", label: "0" },
+        { value: "1", label: "1" },
+        { value: "2", label: "2" },
+        { value: "3", label: "3" },
+        { value: "4", label: "4" },
+        { value: "5", label: "5" },
+        { value: "5+", label: "5+" }
       ]
     }
   },
@@ -229,21 +238,23 @@ export const schemaFromBackend: QuoteBuilderFormSchema[] = [
     id: "billing_address",
     children: [
       {
-        component: 'input',
+        component: 'inputText',
         id: 'line1',
-        validation: 'required',
+        validation: [
+          { rule: 'required' }
+        ],
         props: {
           label: 'line 1',
-          type: 'text'
         }
       },
       {
-        component: 'input',
+        component: 'inputText',
         id: 'line2',
-        validation: '',
+        validation: [
+          { rule: 'required' }
+        ],
         props: {
           label: 'line 2',
-          type: 'text'
         }
       },
     ]
